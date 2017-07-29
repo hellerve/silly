@@ -67,11 +67,37 @@ TEST silly_subtraction() {
   PASS();
 }
 
+TEST silly_multiplication() {
+  silly x = silly_zeros();
+  x.sign = 1;
+  x.before = 3;
+  silly y = silly_zeros();
+  y.before = 2;
+  x = silly_mul(x, y);
+
+  ASSERT_EQ_FMT(1, x.sign, "%d");
+  ASSERT_EQ_FMT(6, x.before, "%d");
+  ASSERT_EQ_FMT(0, x.after, "%d");
+
+  x = silly_zeros();
+  x.before = 3;
+  x.after = 0xffffffff;
+  y = silly_zeros();
+  y.before = 2;
+  x = silly_mul(x, y);
+
+  ASSERT_EQ_FMT(7, x.before, "%d");
+  ASSERT_EQ_FMT(0, x.after, "%d");
+
+  PASS();
+}
+
 SUITE(tests) {
     RUN_TEST(silly_zeros_is_zero);
     RUN_TEST(silly_string);
     RUN_TEST(silly_addition);
     RUN_TEST(silly_subtraction);
+    RUN_TEST(silly_multiplication);
 }
 
 GREATEST_MAIN_DEFS();

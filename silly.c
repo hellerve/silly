@@ -24,7 +24,7 @@ silly silly_add(silly x, silly y) {
   z.before = x.before + y.before;
   z.after = x.after + y.after;
 
-  if (z.after < x.after && z.after < y.after) z.before += 1;
+  if (z.after < x.after && z.after < y.after) z.before++;
   return z;
 }
 
@@ -53,7 +53,26 @@ silly silly_sub(silly x, silly y) {
 
   z.after = x.after - y.after;
 
-  if (z.after > x.after) z.before -= 1;
+  if (z.after > x.after) z.before--;
+
+  return z;
+}
+
+silly silly_mul(silly x, silly y) {
+  silly z = silly_zeros();
+
+  z.sign = x.sign ^ y.sign;
+
+  uint64_t t0 = (x.before * y.after);
+  uint64_t t1 = (y.before * x.after);
+  z.before = x.before * y.before + (t0>>32) + (t1>>32);
+  uint32_t t0b = t0&0xffffffff;
+  uint32_t t1b = t1&0xffffffff;
+  uint32_t tsum = t0b + t1b;
+  if (tsum < t0b || tsum < t1b) z.before++;
+  z.after = x.after * y.after + tsum;
+
+  if (z.after < tsum) z.before++;
 
   return z;
 }

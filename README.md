@@ -13,7 +13,8 @@ Don't. The makefile only includes a test target, because I want to test my code.
 silly silly_zeros(); // creates a fixed point value of zero
 
 silly silly_add(silly, silly); // addition
-silly silly_sub(silly, silly); // subtracttion
+silly silly_sub(silly, silly); // subtraction
+silly silly_mul(silly, silly); // multiplication
 
 char* silly_to_string(silly); // converts a fixed point value to a string (memory is now yours)
 ```

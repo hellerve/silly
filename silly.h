@@ -12,6 +12,7 @@ silly silly_zeros();
 
 silly silly_add(silly, silly);
 silly silly_sub(silly, silly);
+silly silly_mul(silly, silly);
 
 //silly silly_from_8(float8_t);
 //silly silly_from_16(float16_t);
