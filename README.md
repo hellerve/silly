@@ -12,6 +12,9 @@ Don't. The makefile only includes a test target, because I want to test my code.
 ```c
 silly silly_zeros(); // creates a fixed point value of zero
 
+silly make_silly(short, int, int); // make a silly number from the triple (negative?, before decimal, after)
+double silly_to_double(silly); // convert a silly number into a double
+
 silly silly_add(silly, silly); // addition
 silly silly_sub(silly, silly); // subtraction
 silly silly_mul(silly, silly); // multiplication

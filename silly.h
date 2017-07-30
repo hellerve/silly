@@ -14,11 +14,8 @@ silly silly_add(silly, silly);
 silly silly_sub(silly, silly);
 silly silly_mul(silly, silly);
 
-//silly silly_from_8(float8_t);
-//silly silly_from_16(float16_t);
-//silly silly_from_32(float32_t);
-//silly silly_from_64(float64_t);
-//
-//float64_t silly_to_64(silly);
+//silly silly_from_32(float);
+//silly silly_from_64(double);
+double silly_to_double(silly);
 
 char* silly_to_string(silly);

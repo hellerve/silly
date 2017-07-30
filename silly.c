@@ -84,3 +84,7 @@ char* silly_to_string(silly s) {
 
   return res;
 }
+
+double silly_to_double(silly s) {
+  return ((double)s.before + ((double)s.after)/(double)0xffffffff) * (s.sign ? -1 : 1);
+}
