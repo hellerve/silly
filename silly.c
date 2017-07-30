@@ -88,3 +88,11 @@ char* silly_to_string(silly s) {
 double silly_to_double(silly s) {
   return ((double)s.before + ((double)s.after)/(double)0xffffffff) * (s.sign ? -1 : 1);
 }
+
+silly make_silly(short sign, int before, int after) {
+  silly s;
+  s.sign = sign;
+  s.before = before;
+  s.after = after;
+  return s;
+}

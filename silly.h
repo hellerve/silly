@@ -9,6 +9,7 @@ typedef struct {
 } silly;
 
 silly silly_zeros();
+silly make_silly(short, int, int);
 
 silly silly_add(silly, silly);
 silly silly_sub(silly, silly);
