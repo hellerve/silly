@@ -77,6 +77,18 @@ silly silly_mul(silly x, silly y) {
   return z;
 }
 
+silly silly_div(silly x, silly y) {
+  silly z;
+  z.sign = x.sign ^ y.sign;
+
+  uint64_t x0 = (((uint64_t) x.before) << 32) + x.after;
+  uint64_t y0 = (((uint64_t) y.before) << 32) + y.after;
+  z.before = x0 / y0;
+  z.after = 0;
+
+  return z;
+}
+
 char* silly_to_string(silly s) {
   char* res = malloc(23);
 

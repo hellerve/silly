@@ -116,12 +116,31 @@ TEST silly_conversion() {
   PASS();
 }
 
+TEST silly_division() {
+  silly x = make_silly(0, 10, 0);
+  silly y = make_silly(1, 5, 0);
+
+  ASSERT_EQ_FMT(-2.0, silly_to_double(silly_div(x, y)), "%f");
+
+  y = make_silly(1, 2, 5);
+
+  ASSERT_EQ_FMT(-4.0, silly_to_double(silly_div(x, y)), "%f");
+
+  // :(
+  y = make_silly(1, 2, 3);
+
+  ASSERT_EQ_FMT(-4.0, silly_to_double(silly_div(x, y)), "%f");
+
+  PASS();
+}
+
 SUITE(tests) {
     RUN_TEST(silly_zeros_is_zero);
     RUN_TEST(silly_string);
     RUN_TEST(silly_addition);
     RUN_TEST(silly_subtraction);
     RUN_TEST(silly_multiplication);
+    RUN_TEST(silly_division);
     RUN_TEST(silly_conversion);
 }
 
