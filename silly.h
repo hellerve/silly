@@ -1,3 +1,4 @@
+#include <math.h>
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,8 +16,8 @@ silly silly_add(silly, silly);
 silly silly_sub(silly, silly);
 silly silly_mul(silly, silly);
 
-//silly silly_from_32(float);
-//silly silly_from_64(double);
+silly silly_from_float(float);
+silly silly_from_double(double);
 double silly_to_double(silly);
 
 char* silly_to_string(silly);

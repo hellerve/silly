@@ -96,3 +96,23 @@ silly make_silly(short sign, int before, int after) {
   s.after = after;
   return s;
 }
+
+silly silly_from_float(float x) {
+  silly s;
+  double _;
+  s.sign = signbit(x);
+  x = fabs(x);
+  s.before = trunc(x);
+  s.after = modf(x, &_);
+  return s;
+}
+
+silly silly_from_double(double x) {
+  silly s;
+  double _;
+  s.sign = signbit(x);
+  x = fabs(x);
+  s.before = trunc(x);
+  s.after = modf(x, &_);
+  return s;
+}

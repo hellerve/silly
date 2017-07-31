@@ -100,6 +100,17 @@ TEST silly_conversion() {
   x.before = 1;
   x.after = (int)(((double)0xffffffff)/10);
   ASSERT(-1.1 - silly_to_double(x) <= 0.01);
+
+  x = silly_from_float(0.0);
+  ASSERT_EQ_FMT(0.0, silly_to_double(x), "%f");
+  x = silly_from_float(-1.1);
+  ASSERT(-1.1 - silly_to_double(x) <= 0.01);
+
+  x = silly_from_double((double) 0.0);
+  ASSERT_EQ_FMT(0.0, silly_to_double(x), "%f");
+  x = silly_from_double((double) -1.1);
+  ASSERT(-1.1 - silly_to_double(x) <= 0.01);
+
   PASS();
 }
 
