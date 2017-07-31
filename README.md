@@ -14,6 +14,8 @@ Don’t. The makefile only includes a test target, because I want to test my cod
 ```c
 silly silly_zeros(); // creates a fixed point value of zero
 silly make_silly(short, int, int); // make a silly number from the triple (negative?, before decimal, after)
+silly silly_from_float(float); // creates a silly number from a float
+silly silly_from_double(double); // creates a silly number from a double
 
 double silly_to_double(silly); // convert a silly number into a double
 
