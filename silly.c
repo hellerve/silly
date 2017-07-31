@@ -63,8 +63,8 @@ silly silly_mul(silly x, silly y) {
 
   z.sign = x.sign ^ y.sign;
 
-  uint64_t t0 = (x.before * y.after);
-  uint64_t t1 = (y.before * x.after);
+  uint64_t t0 = ((uint64_t) x.before) * y.after;
+  uint64_t t1 = ((uint64_t) y.before) * x.after;
   z.before = x.before * y.before + (t0>>32) + (t1>>32);
   uint32_t t0b = t0&0xffffffff;
   uint32_t t1b = t1&0xffffffff;

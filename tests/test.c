@@ -81,13 +81,13 @@ TEST silly_multiplication() {
 
   x = silly_zeros();
   x.before = 3;
-  x.after = 0xffffffff;
+  x.after = 1<<31;
   y = silly_zeros();
   y.before = 2;
   x = silly_mul(x, y);
 
-  /*ASSERT_EQ_FMT(7, x.before, "%d");
-  ASSERT_EQ_FMT(0, x.after, "%d");*/
+  ASSERT_EQ_FMT(7, x.before, "%d");
+  ASSERT_EQ_FMT(0, x.after, "%d");
 
   PASS();
 }
