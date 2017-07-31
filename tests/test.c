@@ -110,6 +110,8 @@ TEST silly_conversion() {
   ASSERT_EQ_FMT(0.0, silly_to_double(x), "%f");
   x = silly_from_double((double) -1.1);
   ASSERT(-1.1 - silly_to_double(x) <= 0.01);
+  x = silly_from_double((double) -413.25);
+  ASSERT(-413.25 - silly_to_double(x) <= 0.01);
 
   PASS();
 }
