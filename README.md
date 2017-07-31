@@ -1,11 +1,13 @@
 # silly
 
 A toy library implementing fixed-point arithmetic.
-Please don't use it, the name is descriptive.
+Please don’t use it, the name is descriptive.
+
+It’s also pretty inefficient.
 
 ## Installation
 
-Don't. The makefile only includes a test target, because I want to test my code.
+Don’t. The makefile only includes a test target, because I want to test my code.
 
 ## Usage
 
