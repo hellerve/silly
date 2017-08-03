@@ -129,12 +129,15 @@ TEST silly_integral_division() {
 
   ASSERT_EQ_FMT(-2.0, silly_to_double(silly_idiv(x, y)), "%f");
 
-  y = make_silly(1, 2, 5);
-
+  y = make_silly(1, 2, 0xffffffff/2);
   ASSERT_EQ_FMT(-4.0, silly_to_double(silly_idiv(x, y)), "%f");
 
   y = make_silly(1, 2, 3);
   ASSERT_EQ_FMT(-4.0, silly_to_double(silly_idiv(x, y)), "%f");
+
+  x = make_silly(0, 10000000, 0);
+  y = make_silly(1, 2, 0xffffffff/2);
+  ASSERT_EQ_FMT(-4000000.0, silly_to_double(silly_idiv(x, y)), "%f");
 
   PASS();
 }
