@@ -22,7 +22,8 @@ double silly_to_double(silly); // convert a silly number into a double
 silly silly_add(silly, silly); // addition
 silly silly_sub(silly, silly); // subtraction
 silly silly_mul(silly, silly); // multiplication
-silly silly_div(silly, silly); // division (integer precision only :( )
+silly silly_idiv(silly, silly); // division (integer precision)
+silly silly_div(silly, silly); // division
 
 char* silly_to_string(silly); // converts a fixed point value to a string (memory is now yours)
 ```

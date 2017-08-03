@@ -77,7 +77,7 @@ silly silly_mul(silly x, silly y) {
   return z;
 }
 
-silly silly_div(silly x, silly y) {
+silly silly_idiv(silly x, silly y) {
   silly z;
   z.sign = x.sign ^ y.sign;
 
@@ -89,10 +89,53 @@ silly silly_div(silly x, silly y) {
   return z;
 }
 
+int count_zeroes(uint64_t x) {
+    int res = 0;
+    while (!(x & 0xf000000000000000)) { res += 4; x <<= 4; }
+    while (!(x & 0x8000000000000000)) { res += 1; x <<= 1; }
+    return res;
+}
+
+silly silly_div(silly x, silly y) {
+  uint64_t x0 = (((uint64_t) x.before) << 32) + x.after;
+  uint64_t y0 = (((uint64_t) y.before) << 32) + y.after;
+
+  uint64_t rem = x0;
+  uint64_t div = y0;
+  uint64_t quo = 0UL;
+  int b = 33; // 64 / 2 + 1
+
+  while ((div & 0xF) == 0 && b >= 4) {
+      div >>= 4;
+      b -= 4;
+  }
+
+  while (rem && b >= 0) {
+      int s = count_zeroes(rem);
+      if (s > b) s = b;
+
+      rem <<= s;
+      b -= s;
+
+      uint64_t d = rem / div;
+      rem %= div;
+      quo += d << b;
+
+      rem <<= 1;
+      --b;
+  }
+
+  // rounding
+  //++quo;
+  uint64_t res = quo >> 1;
+
+  return make_silly(x.sign ^ y.sign, res >> 32, res & 0xffffffff);
+}
+
 char* silly_to_string(silly s) {
   char* res = malloc(23);
 
-  snprintf(res, 23, "%s%010d.%010d", s.sign? "-" : "+", s.before, s.after);
+  snprintf(res, 23, "%s%010d.%010llu", s.sign? "-" : "+", s.before, (uint64_t)((s.after/((double)0xffffffff))*(uint64_t)10000000000));
 
   return res;
 }
@@ -111,11 +154,10 @@ silly make_silly(short sign, int before, int after) {
 
 #define FROM(n) {\
   silly s;\
-  double _;\
   s.sign = signbit(x);\
   x = fabs(x);\
   s.before = trunc(x);\
-  s.after = modf(x, &_);\
+  s.after = (uint32_t)((x-(long)x)*0xffffffff);\
   return s;\
 }
 

@@ -15,6 +15,7 @@ silly make_silly(short, int, int);
 silly silly_add(silly, silly);
 silly silly_sub(silly, silly);
 silly silly_mul(silly, silly);
+silly silly_idiv(silly, silly);
 silly silly_div(silly, silly);
 
 silly silly_from_float(float);
