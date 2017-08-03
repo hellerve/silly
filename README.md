@@ -18,6 +18,8 @@ silly silly_from_float(float); // creates a silly number from a float
 silly silly_from_double(double); // creates a silly number from a double
 
 double silly_to_double(silly); // convert a silly number into a double
+uint64_t silly_to_uraw(silly); // convert the silly struct to a raw value (without sign)
+int64_t silly_to_raw(silly); // convert the silly struct to a raw value (with sign)
 
 silly silly_add(silly, silly); // addition
 silly silly_sub(silly, silly); // subtraction

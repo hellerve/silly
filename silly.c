@@ -81,8 +81,8 @@ silly silly_idiv(silly x, silly y) {
   silly z;
   z.sign = x.sign ^ y.sign;
 
-  uint64_t x0 = (((uint64_t) x.before) << 32) + x.after;
-  uint64_t y0 = (((uint64_t) y.before) << 32) + y.after;
+  uint64_t x0 = silly_to_uraw(x);
+  uint64_t y0 = silly_to_uraw(y);
   z.before = x0 / y0;
   z.after = 0;
 
@@ -97,8 +97,8 @@ int count_zeroes(uint64_t x) {
 }
 
 silly silly_div(silly x, silly y) {
-  uint64_t x0 = (((uint64_t) x.before) << 32) + x.after;
-  uint64_t y0 = (((uint64_t) y.before) << 32) + y.after;
+  uint64_t x0 = silly_to_uraw(x);
+  uint64_t y0 = silly_to_uraw(y);
 
   uint64_t rem = x0;
   uint64_t div = y0;
@@ -142,6 +142,14 @@ char* silly_to_string(silly s) {
 
 double silly_to_double(silly s) {
   return ((double)s.before + ((double)s.after)/(double)0xffffffff) * (s.sign ? -1 : 1);
+}
+
+uint64_t silly_to_uraw(silly s) {
+  return (((uint64_t) s.before) << 32) + s.after;
+}
+
+int64_t silly_to_raw(silly s) {
+  return silly_to_uraw(s) * (s.sign ? -1 : 1);
 }
 
 silly make_silly(short sign, int before, int after) {

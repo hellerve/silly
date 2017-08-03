@@ -21,5 +21,7 @@ silly silly_div(silly, silly);
 silly silly_from_float(float);
 silly silly_from_double(double);
 double silly_to_double(silly);
+uint64_t silly_to_uraw(silly);
+int64_t silly_to_raw(silly);
 
 char* silly_to_string(silly);
